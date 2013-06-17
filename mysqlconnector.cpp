@@ -12,7 +12,7 @@ MySQLConnector::MySQLConnector(){
 void MySQLConnector::connectToDatabase()
 {
 
-QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+db = QSqlDatabase::addDatabase("QSQLITE");
 db.setHostName("localhost:8080");
 db.setDatabaseName("sudokuData");
 db.setUserName("root");
@@ -23,6 +23,8 @@ if(ok)
 {
 
     QSqlQuery query ( "SELECT `value` FROM `values` WHERE 1");
+
+
     while (query.next())
     {
 
@@ -35,3 +37,8 @@ if(ok)
 
 }
 
+
+void MySQLConnector::closeConnection(){
+    db.commit();
+    db.close();
+}
