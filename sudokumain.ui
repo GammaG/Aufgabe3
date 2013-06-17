@@ -40,7 +40,7 @@
      <enum>QAbstractSpinBox::NoButtons</enum>
     </property>
    </widget>
-   <widget class="QSpinBox" name="lt21">
+   <widget class="QSpinBox" name="tl21">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -66,7 +66,7 @@
      <enum>QAbstractSpinBox::NoButtons</enum>
     </property>
    </widget>
-   <widget class="QSpinBox" name="lt22">
+   <widget class="QSpinBox" name="tl22">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -274,7 +274,7 @@
      <enum>QAbstractSpinBox::NoButtons</enum>
     </property>
    </widget>
-   <widget class="QSpinBox" name="tr1">
+   <widget class="QSpinBox" name="tr11">
     <property name="geometry">
      <rect>
       <x>280</x>
