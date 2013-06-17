@@ -1,7 +1,8 @@
 #include "sudokumain.h"
 #include "ui_sudokumain.h"
 #include "iostream"
-
+#include "QErrorMessage"
+#include "mysqlconnector.h"
 
 
 SudokuMain::SudokuMain(QWidget *parent) :
@@ -10,7 +11,12 @@ SudokuMain::SudokuMain(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(checkValues()));
+
     connect(ui->actionNeu, SIGNAL(triggered()), this, SLOT(createNewRound()));
+
+    MySQLConnector* connector = new MySQLConnector();
+    connector->connectToDatabase();
+
 }
 
 SudokuMain::~SudokuMain()
@@ -23,6 +29,7 @@ SudokuMain::~SudokuMain()
  */
 void SudokuMain::createNewRound(){
     std::cout << "gehe rein tue nix" << std::endl;
+
 
 }
 
@@ -153,30 +160,52 @@ void SudokuMain::getBoxValues(){
  * @brief SudokuMain::checkValues
  * @return
  */
-bool SudokuMain::checkValues()
+void SudokuMain::checkValues()
 {
+
+
 
     getBoxValues();
     //Horizontal check
     if(    !checkHorizontal(tlBox, tmBox, trBox)
         || !checkHorizontal(mlBox, mmBox, mrBox)
         || !checkHorizontal(dlBox, dmBox, drBox)){
-        std::cout << "bla" << std::endl;
-        return false;
+
+        showDialog("Wrong, Check Horizontal Lines! ");
+
+        return;
     }
     if(   !checkVertical(tlBox,mlBox,dlBox)
        || !checkVertical(tmBox,mmBox,dmBox)
        || !checkVertical(trBox,mrBox,drBox) ){
-        return false;
+
+        showDialog("Wrong, Check Vertical Lines! ");
+
+        return;
    }
 
     if(   !checkBox(tlBox) || !checkBox(tmBox) || !checkBox(trBox)
        || !checkBox(mlBox) || !checkBox(mmBox) || !checkBox(mrBox)
        || !checkBox(dlBox) || !checkBox(dmBox) || !checkBox(drBox))
     {
-        return false;
+
+        showDialog("Wrong, Check the Boxes! ");
+        return;
     }
-return true;
+
+        showDialog("Gratulation, You win ! ");
+
+return;
+
+}
+
+
+
+void SudokuMain::showDialog(const QString &message){
+
+    QErrorMessage* error = new QErrorMessage();
+
+    error->showMessage(message);
 
 }
 
@@ -314,3 +343,7 @@ bool SudokuMain::checkBox(int box[]){
 }
 return true;
 }
+
+
+
+

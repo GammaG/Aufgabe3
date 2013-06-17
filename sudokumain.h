@@ -32,15 +32,17 @@ public:
     bool checkHorizontal(int box1[], int box2[], int box3[]);
     bool checkVertical(int box1[], int box2[], int box3[]);
     bool checkBox(int box[]);
-
+    void showDialog(const QString &message);
 
 public slots:
-    bool checkValues();
+
+    void checkValues();
     void createNewRound();
 
 
 private:
     Ui::SudokuMain *ui;
+
 };
 
 #endif // SUDOKUMAIN_H

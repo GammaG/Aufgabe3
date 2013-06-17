@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       +=sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,6 +20,4 @@ SOURCES += main.cpp\
 HEADERS  += sudokumain.h \
     mysqlconnector.h
 
-FORMS    += sudokumain.ui \
-    dialogVic.ui \
-    form.ui
+FORMS    += sudokumain.ui
