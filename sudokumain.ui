@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>455</width>
-    <height>448</height>
+    <width>458</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1070,8 +1070,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>360</y>
+      <x>320</x>
+      <y>350</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -1086,7 +1086,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>455</width>
+     <width>458</width>
      <height>25</height>
     </rect>
    </property>
@@ -1114,12 +1114,35 @@
    </property>
   </action>
   <action name="actionSchlie_en">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Schließen</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionSchlie_en</sender>
+   <signal>triggered()</signal>
+   <receiver>SudokuMain</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>227</x>
+     <y>223</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
