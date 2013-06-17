@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        sudokumain.cpp
+        sudokumain.cpp \
+    mysqlconnector.cpp
 
-HEADERS  += sudokumain.h
+HEADERS  += sudokumain.h \
+    mysqlconnector.h
 
-FORMS    += sudokumain.ui
+FORMS    += sudokumain.ui \
+    dialogVic.ui \
+    form.ui

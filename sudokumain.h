@@ -27,11 +27,18 @@ public:
 
     explicit SudokuMain(QWidget *parent = 0);
     ~SudokuMain();
-    void getBoxValues();
-    bool checkValues();
-    bool checkHorizontal(int box1[], int box2[], int box3[]);
 
-    
+    void getBoxValues();
+    bool checkHorizontal(int box1[], int box2[], int box3[]);
+    bool checkVertical(int box1[], int box2[], int box3[]);
+    bool checkBox(int box[]);
+
+
+public slots:
+    bool checkValues();
+    void createNewRound();
+
+
 private:
     Ui::SudokuMain *ui;
 };

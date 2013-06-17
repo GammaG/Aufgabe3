@@ -1,5 +1,6 @@
 #include "sudokumain.h"
 #include "ui_sudokumain.h"
+#include "iostream"
 
 
 
@@ -8,7 +9,8 @@ SudokuMain::SudokuMain(QWidget *parent) :
     ui(new Ui::SudokuMain)
 {
     ui->setupUi(this);
-
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(checkValues()));
+    connect(ui->actionNeu, SIGNAL(triggered()), this, SLOT(createNewRound()));
 }
 
 SudokuMain::~SudokuMain()
@@ -16,7 +18,21 @@ SudokuMain::~SudokuMain()
     delete ui;
 }
 
+/** Methode loades new Values for UI and sets them
+ * @brief SudokuMain::createNewRound
+ */
+void SudokuMain::createNewRound(){
+    std::cout << "gehe rein tue nix" << std::endl;
+
+}
+
+
+/** Methode reads actually values and adds them to Arrays
+ * @brief SudokuMain::getBoxValues
+ */
 void SudokuMain::getBoxValues(){
+
+
 
     //first Box top left
     tlBox[0] = ui->tl11->value();
@@ -133,18 +149,44 @@ void SudokuMain::getBoxValues(){
 
 }
 
+/** Methode checks values and returns true if all rules are completed else false.
+ * @brief SudokuMain::checkValues
+ * @return
+ */
 bool SudokuMain::checkValues()
 {
+
+    getBoxValues();
     //Horizontal check
-    if(!checkHorizontal(tlBox, tmBox, trBox) || !checkHorizontal(mlBox, mmBox, mrBox) || !checkHorizontal(dlBox, dmBox, drBox)){
+    if(    !checkHorizontal(tlBox, tmBox, trBox)
+        || !checkHorizontal(mlBox, mmBox, mrBox)
+        || !checkHorizontal(dlBox, dmBox, drBox)){
+        std::cout << "bla" << std::endl;
         return false;
+    }
+    if(   !checkVertical(tlBox,mlBox,dlBox)
+       || !checkVertical(tmBox,mmBox,dmBox)
+       || !checkVertical(trBox,mrBox,drBox) ){
+        return false;
+   }
+
+    if(   !checkBox(tlBox) || !checkBox(tmBox) || !checkBox(trBox)
+       || !checkBox(mlBox) || !checkBox(mmBox) || !checkBox(mrBox)
+       || !checkBox(dlBox) || !checkBox(dmBox) || !checkBox(drBox))
+    {
+        return false;
+    }
+return true;
 
 }
 
-
-
-}
-
+/** Methode checks every Horizontal line that numbers 1-9 are unique
+ * @brief SudokuMain::checkHorizontal
+ * @param box1
+ * @param box2
+ * @param box3
+ * @return
+ */
 bool SudokuMain::checkHorizontal(int box1[], int box2[], int box3[]){
 
     int x = 0;
@@ -196,3 +238,79 @@ return true;
 
 }
 
+/** Methode checks every Vertical line that numbers 1-9 are unique
+ * @brief SudokuMain::checkVertical
+ * @param box1
+ * @param box2
+ * @param box3
+ * @return
+ */
+bool SudokuMain::checkVertical(int box1[], int box2[], int box3[]){
+
+    int x = 0;
+    int y = 0;
+
+    int counter = 0;
+
+    for(int c = 1; c < 4; ++c){
+
+
+    switch(c)
+    {
+    case 1: { x = 0; y = 7;} break;
+    case 2: { x = 1; y = 8;} break;
+    case 3: { x = 2; y = 9;} break;
+
+    }
+
+    int tempArray[9];
+
+    for(int i = 0; i < 3; ++i){
+
+
+        for(int j = x; j < y; j+=3) {
+
+            switch(i){
+            case 0 : tempArray[counter] = box1[j]; break;
+            case 1 : tempArray[counter] = box2[j]; break;
+            case 2 : tempArray[counter] = box3[j]; break;
+            }
+            ++counter;
+
+        }
+    }
+
+
+
+    for(int i = 0; i < 9; ++i){
+        int temp = tempArray[i];
+        for(int j = i; j < 9; ++j){
+            if(temp == tempArray[j] || tempArray[j] == 0){
+                return false;
+            }
+        }
+
+
+    }
+}
+return true;
+
+}
+
+/** Methode checks every Box that numbers 1-9 are unique
+ * @brief SudokuMain::checkBox
+ * @param box
+ * @return
+ */
+bool SudokuMain::checkBox(int box[]){
+    for(int i = 0; i < 9; ++i){
+        int temp = box[i];
+        for(int j = i; j < 9; ++j){
+            if(temp == box[j] || box[j] == 0){
+                return false;
+            }
+        }
+
+}
+return true;
+}
