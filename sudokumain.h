@@ -50,6 +50,9 @@ public:
     bool checkVertical(int box1[], int box2[], int box3[]);
     bool checkBox(int box[]);
     void showDialog(const QString &message);
+    void reset();
+    void setValues();
+    void setField(std::string str, int val);
 
 public slots:
 
