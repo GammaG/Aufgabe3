@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT       +=sql
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,10 +14,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        sudokumain.cpp \
-    mysqlconnector.cpp
+        sudokumain.cpp
 
 HEADERS  += sudokumain.h \
-    mysqlconnector.h
+    ../randomizer.h
 
 FORMS    += sudokumain.ui

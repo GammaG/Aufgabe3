@@ -2,6 +2,9 @@
 #define SUDOKUMAIN_H
 
 #include <QMainWindow>
+#include "QtSql/QSqlDatabase"
+#include "QtSql/QSqlQuery"
+#include <map>
 
 namespace Ui {
 class SudokuMain;
@@ -12,6 +15,20 @@ class SudokuMain : public QMainWindow
     Q_OBJECT
     
 public:
+
+    struct Valuepair{
+        std::string name;
+        int value;
+    };
+
+
+    std::map<int, Valuepair> map;
+    QSqlDatabase db;
+
+    int getRandom();
+    void connectToDatabase();
+    void closeConnection();
+
 
     int tlBox[9];
     int tmBox[9];

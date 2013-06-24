@@ -2,7 +2,15 @@
 #include "ui_sudokumain.h"
 #include "iostream"
 #include "QErrorMessage"
-#include "mysqlconnector.h"
+#include "sqlconnector.h"
+#include "QtGui"
+#include "QtSql/QSqlDatabase"
+#include "QtSql/QSqlQuery"
+#include "QtSql/QSqlError"
+#include "iostream"
+#include "QDir"
+#include <cstdlib>
+
 
 
 SudokuMain::SudokuMain(QWidget *parent) :
@@ -14,10 +22,11 @@ SudokuMain::SudokuMain(QWidget *parent) :
 
     connect(ui->actionNeu, SIGNAL(triggered()), this, SLOT(createNewRound()));
 
-    MySQLConnector* connector = new MySQLConnector();
-    connector->connectToDatabase();
-
+    connectToDatabase();
+    closeConnection();
 }
+
+
 
 SudokuMain::~SudokuMain()
 {
@@ -345,5 +354,56 @@ return true;
 }
 
 
+void SudokuMain::connectToDatabase(){
+db = QSqlDatabase::addDatabase("QSQLITE");
 
+db.setDatabaseName(QDir::homePath() + QDir::separator() + "sudokuData");
+
+bool ok = db.open();
+
+if(ok)
+{
+
+    map.clear();
+    QSqlQuery query (db);
+
+    query.exec("select * from `data`");
+
+    int i = 0;
+    while (query.next())
+    {
+
+    QString name = query.value(0).toString();
+    QString value = query.value(2).toString();
+
+    Valuepair pair = {name.toStdString(),value.toInt()};
+
+    map[i] = pair;
+
+    std::cout << name.toStdString() << std::endl;
+    std::cout << getRandom() << std::endl;
+
+    }
+
+ //   std::cout << "last error: " << qPrintable(query.lastError().text()) << std::endl;
+    }
+
+}
+
+int SudokuMain::getRandom(){
+int  r;
+
+srand(time(0));
+
+r = rand()%10;
+
+
+return ++r;
+
+}
+
+void SudokuMain::closeConnection(){
+    db.commit();
+    db.close();
+}
 
