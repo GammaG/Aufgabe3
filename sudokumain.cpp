@@ -236,6 +236,30 @@ return true;
 }
 
 
+
+/** Methode konvertiert einen übergebenen Int wert zu einem String und gibt diesen zurück.
+ * @brief convertInt
+ * @param number
+ * @return
+ */
+std::string SudokuMain::convertInt(int number)
+{
+    if (number == 0)
+        return "0";
+    std::string temp="";
+    std::string returnvalue="";
+    while (number>0)
+    {
+        temp+=number%10+48;
+        number/=10;
+    }
+    for (int i=0;i<temp.length();i++)
+        returnvalue+=temp[temp.length()-i-1];
+    return returnvalue;
+}
+
+
+
 void SudokuMain::connectToDatabase(){
 db = QSqlDatabase::addDatabase("QSQLITE");
 
@@ -249,14 +273,18 @@ if(ok)
     map.clear();
     QSqlQuery query (db);
 
-    query.exec("select * from `data` where collection = "+getRandom());
+
+    std::string temp = "select name, value from data where collection = "+convertInt(getRandom())+";";
+
+
+    query.exec(QString::fromStdString(temp));
 
     int i = 0;
     while (query.next())
     {
 
     QString name = query.value(0).toString();
-    QString value = query.value(2).toString();
+    QString value = query.value(1).toString();
 
     Valuepair pair = {name.toStdString(),value.toInt()};
 
@@ -265,7 +293,8 @@ if(ok)
     i++;
     }
 
- //   std::cout << "last error: " << qPrintable(query.lastError().text()) << std::endl;
+
+    std::cout << qPrintable(query.lastError().text()) << std::endl;
     }
 
 }
@@ -285,6 +314,7 @@ return ++r;
 void SudokuMain::closeConnection(){
     db.commit();
     db.close();
+
 }
 
 void SudokuMain::setValues(){

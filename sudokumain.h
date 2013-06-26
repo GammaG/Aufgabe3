@@ -47,6 +47,7 @@ public:
 
     void getBoxValues();
     bool checkHorizontal(int box1[], int box2[], int box3[]);
+    std::string convertInt(int number);
     bool checkVertical(int box1[], int box2[], int box3[]);
     bool checkBox(int box[]);
     void showDialog(const QString &message);
