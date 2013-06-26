@@ -261,7 +261,7 @@ std::string SudokuMain::convertInt(int number)
 
 
 void SudokuMain::connectToDatabase(){
-db = QSqlDatabase::addDatabase("QSQLITE");
+    db = QSqlDatabase::addDatabase("QSQLITE", "default");
 
 db.setDatabaseName(QDir::homePath() + QDir::separator() + "sudokuData");
 
@@ -314,6 +314,8 @@ return ++r;
 void SudokuMain::closeConnection(){
     db.commit();
     db.close();
+    db = QSqlDatabase();
+    QSqlDatabase::database().removeDatabase("default");
 
 }
 
@@ -335,354 +337,417 @@ void SudokuMain::setValues(){
 
 void SudokuMain::setField(std::string str, int val){
 
+    QFont* font = new QFont();
+       font->setBold(true);
+
     if(str=="tl11"){
         ui->tl11->setValue(val);
         ui->tl11->setReadOnly(true);
+        ui->tl11->setFont(*font);
 
     }
 
     else if(str=="tl12"){
         ui->tl12->setValue(val);
         ui->tl12->setReadOnly(true);
+        ui->tl12->setFont(*font);
     }
 
     else if(str=="tl13"){
         ui->tl13->setValue(val);
         ui->tl13->setReadOnly(true);
+        ui->tl13->setFont(*font);
     }
 
 
     else if(str=="tl21"){
         ui->tl21->setValue(val);
         ui->tl21->setReadOnly(true);
+        ui->tl21->setFont(*font);
     }
 
 
     else if(str=="tl22"){
         ui->tl22->setValue(val);
         ui->tl22->setReadOnly(true);
+        ui->tl22->setFont(*font);
     }
 
 
     else if(str=="tl23"){
         ui->tl23->setValue(val);
         ui->tl23->setReadOnly(true);
+        ui->tl23->setFont(*font);
     }
 
 
     else if(str=="tl31"){
         ui->tl31->setValue(val);
         ui->tl31->setReadOnly(true);
+        ui->tl31->setFont(*font);
+
     }
 
 
     else if(str=="tl32"){
         ui->tl32->setValue(val);
         ui->tl32->setReadOnly(true);
+        ui->tl32->setFont(*font);
     }
 
 
     else if(str=="tl33"){
         ui->tl33->setValue(val);
         ui->tl33->setReadOnly(true);
+        ui->tl33->setFont(*font);
     }
 
 
     else if(str=="tm11"){
         ui->tm11->setValue(val);
         ui->tm11->setReadOnly(true);
+        ui->tm11->setFont(*font);
     }
 
 
     else if(str=="tm12"){
         ui->tm12->setValue(val);
         ui->tm12->setReadOnly(true);
+        ui->tm12->setFont(*font);
     }
 
 
     else if(str=="tm13"){
         ui->tm13->setValue(val);
         ui->tm13->setReadOnly(true);
+        ui->tm13->setFont(*font);
     }
 
 
     else if(str=="tm21"){
         ui->tm21->setValue(val);
         ui->tm21->setReadOnly(true);
+        ui->tm21->setFont(*font);
     }
 
 
     else if(str=="tm22"){
         ui->tm22->setValue(val);
         ui->tm22->setReadOnly(true);
+        ui->tm22->setFont(*font);
     }
 
 
     else if(str=="tm23"){
         ui->tm23->setValue(val);
         ui->tm23->setReadOnly(true);
+        ui->tm23->setFont(*font);
     }
 
 
     else if(str=="tm31"){
         ui->tm31->setValue(val);
         ui->tm31->setReadOnly(true);
+        ui->tm31->setFont(*font);
     }
 
 
     else if(str=="tm32"){
         ui->tm32->setValue(val);
         ui->tm32->setReadOnly(true);
+        ui->tm32->setFont(*font);
     }
 
 
     else if(str=="tm33"){
         ui->tm33->setValue(val);
         ui->tm33->setReadOnly(true);
+        ui->tm33->setFont(*font);
     }
 
     else if(str=="tr11"){
         ui->tr11->setValue(val);
         ui->tr11->setReadOnly(true);
+        ui->tr11->setFont(*font);
     }
 
 
     else if(str=="tr12"){
         ui->tr12->setValue(val);
         ui->tr12->setReadOnly(true);
+        ui->tr12->setFont(*font);
     }
 
 
     else if(str=="tr13"){
         ui->tr13->setValue(val);
         ui->tr13->setReadOnly(true);
+        ui->tr13->setFont(*font);
     }
 
 
     else if(str=="tr21"){
         ui->tr21->setValue(val);
         ui->tr21->setReadOnly(true);
+        ui->tr21->setFont(*font);
     }
 
 
     else if(str=="tr22"){
         ui->tr22->setValue(val);
         ui->tr22->setReadOnly(true);
+        ui->tr22->setFont(*font);
     }
 
 
     else if(str=="tr23"){
         ui->tr23->setValue(val);
         ui->tr23->setReadOnly(true);
+        ui->tr23->setFont(*font);
     }
 
 
     else if(str=="tr31"){
         ui->tr31->setValue(val);
         ui->tr31->setReadOnly(true);
+        ui->tr31->setFont(*font);
     }
 
 
     else if(str=="tr32"){
         ui->tr32->setValue(val);
         ui->tr32->setReadOnly(true);
+        ui->tr32->setFont(*font);
     }
 
 
     else if(str=="tr33"){
         ui->tr33->setValue(val);
         ui->tr33->setReadOnly(true);
+        ui->tr33->setFont(*font);
     }
 
 
     else if(str=="ml11"){
         ui->ml11->setValue(val);
         ui->ml11->setReadOnly(true);
+        ui->ml11->setFont(*font);
     }
 
 
     else if(str=="ml12"){
         ui->ml12->setValue(val);
         ui->ml12->setReadOnly(true);
+        ui->ml12->setFont(*font);
     }
 
 
     else if(str=="ml13"){
         ui->ml13->setValue(val);
         ui->ml13->setReadOnly(true);
+        ui->ml13->setFont(*font);
     }
 
 
     else if(str=="ml21"){
         ui->ml21->setValue(val);
         ui->ml21->setReadOnly(true);
+        ui->ml21->setFont(*font);
     }
 
 
     else if(str=="ml22"){
         ui->ml22->setValue(val);
         ui->ml22->setReadOnly(true);
+        ui->ml22->setFont(*font);
     }
 
 
     else if(str=="ml23"){
         ui->ml23->setValue(val);
         ui->ml23->setReadOnly(true);
+        ui->ml23->setFont(*font);
     }
 
 
     else if(str=="ml31"){
         ui->ml31->setValue(val);
         ui->ml31->setReadOnly(true);
+        ui->ml31->setFont(*font);
     }
 
 
     else if(str=="ml32"){
         ui->ml32->setValue(val);
         ui->ml32->setReadOnly(true);
+        ui->ml32->setFont(*font);
     }
 
 
     else if(str=="ml33"){
         ui->ml33->setValue(val);
         ui->ml33->setReadOnly(true);
+        ui->ml33->setFont(*font);
     }
 
 
     else if(str=="mm11"){
         ui->mm11->setValue(val);
         ui->mm11->setReadOnly(true);
+        ui->mm11->setFont(*font);
     }
 
 
     else if(str=="mm12"){
         ui->mm12->setValue(val);
         ui->mm12->setReadOnly(true);
+        ui->mm12->setFont(*font);
     }
 
 
     else if(str=="mm13"){
         ui->mm13->setValue(val);
         ui->mm13->setReadOnly(true);
+        ui->mm13->setFont(*font);
     }
 
 
     else if(str=="mm21"){
         ui->mm21->setValue(val);
         ui->mm21->setReadOnly(true);
+        ui->mm21->setFont(*font);
     }
 
 
     else if(str=="mm22"){
         ui->mm22->setValue(val);
         ui->mm22->setReadOnly(true);
+        ui->mm22->setFont(*font);
     }
 
 
     else if(str=="mm23"){
         ui->mm23->setValue(val);
         ui->mm23->setReadOnly(true);
+        ui->mm23->setFont(*font);
     }
 
 
     else if(str=="mm31"){
         ui->mm31->setValue(val);
         ui->mm31->setReadOnly(true);
+        ui->mm31->setFont(*font);
     }
 
 
     else if(str=="mm32"){
         ui->mm32->setValue(val);
         ui->mm32->setReadOnly(true);
+        ui->mm32->setFont(*font);
     }
 
 
     else if(str=="mm33"){
         ui->mm33->setValue(val);
         ui->mm33->setReadOnly(true);
+        ui->mm33->setFont(*font);
     }
 
 
     else if(str=="mr11"){
         ui->mr11->setValue(val);
         ui->mr11->setReadOnly(true);
+        ui->mr11->setFont(*font);
     }
 
 
     else if(str=="mr12"){
         ui->mr12->setValue(val);
         ui->mr12->setReadOnly(true);
+        ui->mr12->setFont(*font);
     }
 
 
     else if(str=="mr13"){
         ui->mr13->setValue(val);
         ui->mr13->setReadOnly(true);
+        ui->mr13->setFont(*font);
     }
 
 
     else if(str=="mr21"){
         ui->mr21->setValue(val);
         ui->mr21->setReadOnly(true);
+        ui->mr21->setFont(*font);
     }
 
 
     else if(str=="mr22"){
         ui->mr22->setValue(val);
         ui->mr22->setReadOnly(true);
+        ui->mr21->setFont(*font);
     }
 
 
     else if(str=="mr23"){
         ui->mr23->setValue(val);
         ui->mr23->setReadOnly(true);
+        ui->mr23->setFont(*font);
     }
 
 
     else if(str=="mr31"){
         ui->mr31->setValue(val);
         ui->mr31->setReadOnly(true);
+        ui->mr31->setFont(*font);
     }
 
 
     else if(str=="mr32"){
         ui->mr32->setValue(val);
         ui->mr32->setReadOnly(true);
+        ui->mr32->setFont(*font);
     }
 
 
     else if(str=="mr33"){
         ui->mr33->setValue(val);
         ui->mr33->setReadOnly(true);
+        ui->mr33->setFont(*font);
     }
 
 
     else if(str=="dl11"){
         ui->dl11->setValue(val);
         ui->dl11->setReadOnly(true);
+        ui->dl11->setFont(*font);
     }
 
 
     else if(str=="dl12"){
         ui->dl12->setValue(val);
         ui->dl12->setReadOnly(true);
+        ui->dl12->setFont(*font);
     }
 
 
     else if(str=="dl13"){
         ui->dl13->setValue(val);
         ui->dl13->setReadOnly(true);
+        ui->dl13->setFont(*font);
     }
 
 
     else if(str=="dl21"){
         ui->dl21->setValue(val);
         ui->dl21->setReadOnly(true);
+        ui->dl21->setFont(*font);
     }
 
 
     else if(str=="dl22"){
         ui->dl22->setValue(val);
+        ui->dl22->setFont(*font);
         ui->dl22->setReadOnly(true);
     }
 
@@ -690,132 +755,154 @@ void SudokuMain::setField(std::string str, int val){
     else if(str=="dl23"){
         ui->dl23->setValue(val);
         ui->dl23->setReadOnly(true);
+        ui->dl23->setFont(*font);
     }
 
 
     else if(str=="dl31"){
         ui->dl31->setValue(val);
         ui->dl31->setReadOnly(true);
+        ui->dl31->setFont(*font);
     }
 
 
     else if(str=="dl32"){
         ui->dl32->setValue(val);
         ui->dl32->setReadOnly(true);
+        ui->dl32->setFont(*font);
     }
 
 
     else if(str=="dl33"){
         ui->dl33->setValue(val);
         ui->dl33->setReadOnly(true);
+        ui->dl33->setFont(*font);
     }
 
 
     else if(str=="dm11"){
         ui->dm11->setValue(val);
         ui->dm11->setReadOnly(true);
+        ui->dm11->setFont(*font);
     }
 
 
     else if(str=="dm12"){
         ui->dm12->setValue(val);
         ui->dm12->setReadOnly(true);
+        ui->dm12->setFont(*font);
     }
 
 
     else if(str=="dm13"){
         ui->dm13->setValue(val);
         ui->dm13->setReadOnly(true);
+        ui->dm13->setFont(*font);
     }
 
 
     else if(str=="dm21"){
         ui->dm21->setValue(val);
         ui->dm21->setReadOnly(true);
+        ui->dm21->setFont(*font);
     }
 
 
     else if(str=="dm22"){
         ui->dm22->setValue(val);
         ui->dm22->setReadOnly(true);
+        ui->dm22->setFont(*font);
     }
 
 
     else if(str=="dm23"){
         ui->dm23->setValue(val);
         ui->dm23->setReadOnly(true);
+        ui->dm23->setFont(*font);
     }
 
 
     else if(str=="dm31"){
         ui->dm31->setValue(val);
         ui->dm31->setReadOnly(true);
+        ui->dm31->setFont(*font);
     }
 
 
     else if(str=="dm32"){
         ui->dm32->setValue(val);
         ui->dm32->setReadOnly(true);
+        ui->dm32->setFont(*font);
     }
 
 
     else if(str=="dm33"){
         ui->dm33->setValue(val);
         ui->dm33->setReadOnly(true);
+        ui->dm33->setFont(*font);
     }
 
 
     else if(str=="dr11"){
         ui->dr11->setValue(val);
         ui->dr11->setReadOnly(true);
+        ui->dr11->setFont(*font);
     }
 
 
     else if(str=="dr12"){
         ui->dr12->setValue(val);
         ui->dr12->setReadOnly(true);
+        ui->dr12->setFont(*font);
     }
 
 
     else if(str=="dr13"){
         ui->dr13->setValue(val);
         ui->dr13->setReadOnly(true);
+        ui->dr13->setFont(*font);
     }
 
 
     else if(str=="dr21"){
         ui->dr21->setValue(val);
         ui->dr21->setReadOnly(true);
+        ui->dr21->setFont(*font);
     }
 
 
     else if(str=="dr22"){
         ui->dr22->setValue(val);
         ui->dr22->setReadOnly(true);
+        ui->dr22->setFont(*font);
     }
 
 
     else if(str=="dr23"){
         ui->dr23->setValue(val);
         ui->dr23->setReadOnly(true);
+        ui->dr23->setFont(*font);
     }
 
 
     else if(str=="dr31"){
         ui->dr31->setValue(val);
         ui->dr31->setReadOnly(true);
+        ui->dr31->setFont(*font);
     }
 
 
     else if(str=="dr32"){
         ui->dr32->setValue(val);
         ui->dr32->setReadOnly(true);
+        ui->dr32->setFont(*font);
     }
 
 
     else if(str=="dr33"){
         ui->dr33->setValue(val);
         ui->dr33->setReadOnly(true);
+        ui->dr33->setFont(*font);
     }
 }
 
@@ -826,6 +913,9 @@ void SudokuMain::setField(std::string str, int val){
 void SudokuMain::reset(){
 
 
+
+    QFont* font = new QFont();
+    font->setBold(false);
 
     //first Box top left
     ui->tl11->setReadOnly(false);
@@ -849,6 +939,17 @@ void SudokuMain::reset(){
     ui->tl32->setValue(0);
     ui->tl33->setValue(0);
 
+
+    //first Box top left
+    ui->tl11->setFont(*font);
+    ui->tl12->setFont(*font);
+    ui->tl13->setFont(*font);
+    ui->tl21->setFont(*font);
+    ui->tl22->setFont(*font);
+    ui->tl23->setFont(*font);
+    ui->tl31->setFont(*font);
+    ui->tl32->setFont(*font);
+    ui->tl33->setFont(*font);
 
     //second Box top middle
     ui->tm11->setReadOnly(false);
@@ -874,6 +975,19 @@ void SudokuMain::reset(){
     ui->tm33->setValue(0);
 
 
+
+    //second Box top middle
+    ui->tm11->setFont(*font);
+    ui->tm12->setFont(*font);
+    ui->tm13->setFont(*font);
+    ui->tm21->setFont(*font);
+    ui->tm22->setFont(*font);
+    ui->tm23->setFont(*font);
+    ui->tm31->setFont(*font);
+    ui->tm32->setFont(*font);
+    ui->tm33->setFont(*font);
+
+
     //third Box top right
     ui->tr11->setReadOnly(false);
     ui->tr12->setReadOnly(false);
@@ -895,6 +1009,19 @@ void SudokuMain::reset(){
     ui->tr31->setValue(0);
     ui->tr32->setValue(0);
     ui->tr33->setValue(0);
+
+
+
+    //third Box top right
+    ui->tr11->setFont(*font);
+    ui->tr12->setFont(*font);
+    ui->tr13->setFont(*font);
+    ui->tr21->setFont(*font);
+    ui->tr22->setFont(*font);
+    ui->tr23->setFont(*font);
+    ui->tr31->setFont(*font);
+    ui->tr32->setFont(*font);
+    ui->tr33->setFont(*font);
 
     //first Box middle left
     ui->ml11->setReadOnly(false);
@@ -919,6 +1046,18 @@ void SudokuMain::reset(){
     ui->ml32->setValue(0);
     ui->ml33->setValue(0);
 
+
+    //first Box middle left
+    ui->ml11->setFont(*font);
+    ui->ml12->setFont(*font);
+    ui->ml13->setFont(*font);
+    ui->ml21->setFont(*font);
+    ui->ml22->setFont(*font);
+    ui->ml23->setFont(*font);
+    ui->ml31->setFont(*font);
+    ui->ml32->setFont(*font);
+    ui->ml33->setFont(*font);
+
     //second Box middle middle
     ui->mm11->setReadOnly(false);
     ui->mm12->setReadOnly(false);
@@ -942,6 +1081,21 @@ void SudokuMain::reset(){
     ui->mm32->setValue(0);
     ui->mm33->setValue(0);
 
+
+
+    //second Box middle middle
+    ui->mm11->setFont(*font);
+    ui->mm12->setFont(*font);
+    ui->mm13->setFont(*font);
+    ui->mm21->setFont(*font);
+    ui->mm22->setFont(*font);
+    ui->mm23->setFont(*font);
+    ui->mm31->setFont(*font);
+    ui->mm32->setFont(*font);
+    ui->mm33->setFont(*font);
+
+
+
     //third Box middle right
     ui->mr11->setReadOnly(false);
     ui->mr12->setReadOnly(false);
@@ -963,6 +1117,20 @@ void SudokuMain::reset(){
     ui->mr31->setValue(0);
     ui->mr32->setValue(0);
     ui->mr33->setValue(0);
+
+
+
+    //third Box middle right
+    ui->mr11->setFont(*font);
+    ui->mr12->setFont(*font);
+    ui->mr13->setFont(*font);
+    ui->mr21->setFont(*font);
+    ui->mr22->setFont(*font);
+    ui->mr23->setFont(*font);
+    ui->mr31->setFont(*font);
+    ui->mr32->setFont(*font);
+    ui->mr33->setFont(*font);
+
 
     //first Box down left
     ui->dl11->setReadOnly(false);
@@ -986,6 +1154,19 @@ void SudokuMain::reset(){
     ui->dl31->setValue(0);
     ui->dl32->setValue(0);
     ui->dl33->setValue(0);
+
+
+    //first Box down left
+    ui->dl11->setFont(*font);
+    ui->dl12->setFont(*font);
+    ui->dl13->setFont(*font);
+    ui->dl21->setFont(*font);
+    ui->dl22->setFont(*font);
+    ui->dl23->setFont(*font);
+    ui->dl31->setFont(*font);
+    ui->dl32->setFont(*font);
+    ui->dl33->setFont(*font);
+
 
     //second Box down middle
     ui->dm11->setReadOnly(false);
@@ -1011,6 +1192,18 @@ void SudokuMain::reset(){
     ui->dm33->setValue(0);
 
 
+    //second Box down middle
+    ui->dm11->setFont(*font);
+    ui->dm12->setFont(*font);
+    ui->dm13->setFont(*font);
+    ui->dm21->setFont(*font);
+    ui->dm22->setFont(*font);
+    ui->dm23->setFont(*font);
+    ui->dm31->setFont(*font);
+    ui->dm32->setFont(*font);
+    ui->dm33->setFont(*font);
+
+
     //first Box down left
     ui->dr11->setReadOnly(false);
     ui->dr12->setReadOnly(false);
@@ -1033,6 +1226,19 @@ void SudokuMain::reset(){
     ui->dr31->setValue(0);
     ui->dr32->setValue(0);
     ui->dr33->setValue(0);
+
+
+
+    //third Box down right
+    ui->dr11->setFont(*font);
+    ui->dr12->setFont(*font);
+    ui->dr13->setFont(*font);
+    ui->dr21->setFont(*font);
+    ui->dr22->setFont(*font);
+    ui->dr23->setFont(*font);
+    ui->dr31->setFont(*font);
+    ui->dr32->setFont(*font);
+    ui->dr33->setFont(*font);
 
 }
 
