@@ -6,6 +6,10 @@
 #include "QtSql/QSqlQuery"
 #include <map>
 
+/**
+ * @author Marco Seidler
+ * Header-Class for SudokuMain
+ */
 namespace Ui {
 class SudokuMain;
 }
@@ -16,6 +20,7 @@ class SudokuMain : public QMainWindow
     
 public:
 
+    //is used for temporary save values of the Database
     struct Valuepair{
         std::string name;
         int value;
@@ -30,6 +35,7 @@ public:
     void closeConnection();
 
 
+    //Boxes, are used for the collection of 3x3 int values
     int tlBox[9];
     int tmBox[9];
     int trBox[9];

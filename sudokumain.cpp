@@ -13,6 +13,12 @@
 
 
 
+/**
+ * @author Marco Seidler
+ * @brief SudokuMain::SudokuMain
+ * @param parent
+ * Methode is used to start the application and set the ui actions
+ */
 SudokuMain::SudokuMain(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SudokuMain)
@@ -26,7 +32,10 @@ SudokuMain::SudokuMain(QWidget *parent) :
 }
 
 
-
+/**
+ * Destructor of SudokuMain
+ * @brief SudokuMain::~SudokuMain
+ */
 SudokuMain::~SudokuMain()
 {
     delete ui;
@@ -91,7 +100,11 @@ return;
 }
 
 
-
+/**
+ * Generates and shows a dialog with information
+ * @brief SudokuMain::showDialog
+ * @param message
+ */
 void SudokuMain::showDialog(const QString &message){
 
     QErrorMessage* error = new QErrorMessage();
@@ -259,7 +272,10 @@ std::string SudokuMain::convertInt(int number)
 }
 
 
-
+/** Methode is used to connect with an sqlDatabase, here the connection is definded at the user home Dir
+ * and Databasename sudokuData
+ * @brief SudokuMain::connectToDatabase
+ */
 void SudokuMain::connectToDatabase(){
     db = QSqlDatabase::addDatabase("QSQLITE", "default");
 
@@ -293,12 +309,17 @@ if(ok)
     i++;
     }
 
-
+    //if sql error happen
     std::cout << qPrintable(query.lastError().text()) << std::endl;
     }
 
 }
 
+/**
+ * Methode generates an Random int value in range from 1-10 and returns it
+ * @brief SudokuMain::getRandom
+ * @return int 1-10
+ */
 int SudokuMain::getRandom(){
 int  r;
 
@@ -311,6 +332,9 @@ return ++r;
 
 }
 
+/** Methode is used to commit and close the QSqlDatabase
+ * @brief SudokuMain::closeConnection
+ */
 void SudokuMain::closeConnection(){
     db.commit();
     db.close();
@@ -335,6 +359,12 @@ void SudokuMain::setValues(){
 
 }
 
+/**
+ * Methode sets an field in the ui to a given val, identifier is str string
+ * @brief SudokuMain::setField
+ * @param str
+ * @param val
+ */
 void SudokuMain::setField(std::string str, int val){
 
     QFont* font = new QFont();
